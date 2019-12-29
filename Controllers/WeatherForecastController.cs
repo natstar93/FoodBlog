@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using FoodBlog.Models;
 
 namespace FoodBlog.Controllers
 {
@@ -10,29 +8,26 @@ namespace FoodBlog.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
+        List<BlogPost> Posts = new List<BlogPost>
         {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+          new BlogPost {
+            Id = 1,
+            Title = "First Post",
+            Summary = "My first Post",
+            Body = "I like food",
+            Author = new Author {
+              Id = 1,
+              Name = "Natstar",
+              Description = "Foodie"
+            },
+            Tags = new string[] {"food"}
+          }
         };
 
-        private readonly ILogger<WeatherForecastController> _logger;
-
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
-        {
-            _logger = logger;
-        }
-
         [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        public ActionResult<IEnumerable<BlogPost>> Get()
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+          return Posts;
         }
     }
 }
