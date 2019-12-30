@@ -6,7 +6,7 @@ namespace FoodBlog.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class BlogPostsController : ControllerBase
     {
         List<BlogPost> Posts = new List<BlogPost>
         {
