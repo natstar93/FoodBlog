@@ -11,6 +11,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
+using FoodBlog.Services;
+
+using Microsoft.EntityFrameworkCore;
+
 namespace FoodBlog
 {
     public class Startup
@@ -26,6 +30,9 @@ namespace FoodBlog
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            var connectionString = Configuration.GetConnectionString("BlogContext");
+            services.AddEntityFrameworkNpgsql().AddDbContext<BlogContext>(options => options.UseNpgsql(connectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

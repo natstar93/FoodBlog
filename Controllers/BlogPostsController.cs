@@ -8,15 +8,15 @@ namespace FoodBlog.Controllers
     [Route("[controller]")]
     public class BlogPostsController : ControllerBase
     {
-        List<BlogPost> Posts = new List<BlogPost>
+        List<BlogPost> BlogPosts = new List<BlogPost>
         {
           new BlogPost {
-            Id = 1,
+            BlogPostId = 1,
             Title = "First Post",
             Summary = "My first Post",
             Body = "I like food",
             Author = new Author {
-              Id = 1,
+              AuthorId = 1,
               Name = "Natstar",
               Description = "Foodie"
             },
@@ -27,7 +27,7 @@ namespace FoodBlog.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<BlogPost>> Get()
         {
-          return Posts;
+          return BlogPosts;
         }
     }
 }
