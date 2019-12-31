@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using FoodBlog.Models;
+using FoodBlog.Services;
 
 namespace FoodBlog.Controllers
 {
@@ -8,6 +9,12 @@ namespace FoodBlog.Controllers
     [Route("[controller]")]
     public class BlogPostsController : ControllerBase
     {
+        public BlogContext _context;
+
+        public BlogPostsController(BlogContext context)
+        {
+          _context = context; 
+        }
         List<BlogPost> BlogPosts = new List<BlogPost>
         {
           new BlogPost {
@@ -27,7 +34,7 @@ namespace FoodBlog.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<BlogPost>> Get()
         {
-          return BlogPosts;
+          return _context.BlogPosts;
         }
     }
 }
