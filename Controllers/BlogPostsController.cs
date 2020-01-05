@@ -36,5 +36,12 @@ namespace FoodBlog.Controllers
         {
           return _context.BlogPosts;
         }
+
+        [HttpPost]
+        public void Post([FromBody] BlogPost value)
+        {
+          _context.BlogPosts.Add(value);
+          _context.SaveChanges();
+        }
     }
 }
