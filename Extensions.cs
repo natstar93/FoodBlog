@@ -1,5 +1,6 @@
 using System;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,7 +8,7 @@ using FoodBlog.Services;
 
 public static class Extensions
 {
-  public static IWebHost MigrateDatabase(this IWebHost webHost)
+  public static IHost MigrateDatabase(this IHost webHost)
   {
     var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
