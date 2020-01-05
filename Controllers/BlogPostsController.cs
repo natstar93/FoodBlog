@@ -34,7 +34,7 @@ namespace FoodBlog.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<BlogPost>> Get()
         {
-          return BlogPosts;
+          return _context.BlogPosts;
         }
     }
 }
