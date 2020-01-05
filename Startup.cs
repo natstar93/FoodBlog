@@ -24,7 +24,7 @@ namespace FoodBlog
             Configuration = configuration;
         }
 
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+        readonly string AllowSpecificOrigins = "_allowSpecificOrigins";
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -32,7 +32,7 @@ namespace FoodBlog
         {
             services.AddCors(options => 
             {
-              options.AddPolicy(MyAllowSpecificOrigins, 
+              options.AddPolicy(AllowSpecificOrigins, 
               builder => {
                 builder.WithOrigins("https://natstar-foodie.herokuapp.com");
               });
@@ -78,7 +78,7 @@ namespace FoodBlog
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(MyAllowSpecificOrigins);
+            app.UseCors(AllowSpecificOrigins);
 
             app.UseHttpsRedirection();
 
